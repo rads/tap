@@ -5,8 +5,8 @@
 Add `rads/tap` to `deps.edn`:
 
 ```clojure
-{:deps {rads/tap {:git/url "https://github.com/rads/tap.git"
-	          :git/sha "..." :git/tag "v0.1.0"}}}
+{:deps {com.github.rads/tap {:git/url "https://github.com/rads/tap.git"
+                             :git/sha "de29ea6" :git/tag "v0.1.0"}}}
 ```
 
 Require `rads.tap` to enable `rads.tap/log`:
