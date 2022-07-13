@@ -1,7 +1,8 @@
-(ns rads.tap)
+(ns rads.tap
+  (:require [freactive.core :as r]))
 
-(defonce log (atom []))
-(defonce limit (atom 100))
+(defonce log (r/atom []))
+(defonce limit (r/atom 100))
 
 (defn- add-to-log [x]
   (swap! log
