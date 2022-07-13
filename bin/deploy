@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -ex
+
+clojure -T:build ci
+clojure -T:build install
+clojure -T:build deploy
