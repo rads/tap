@@ -2,7 +2,7 @@
   (:require [clojure.tools.build.api :as b]
             [org.corfield.build :as bb]))
 
-(def lib 'com.github.rads/tap)
+(def lib 'io.github.rads/tap)
 (def version "0.2.0-alpha1")
 
 (defn ci
