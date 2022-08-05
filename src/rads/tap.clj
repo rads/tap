@@ -1,21 +1,28 @@
 (ns rads.tap)
 
-(def ratom
-  (if (System/getenv "babashka.version")
+(def ^:private ratom
+  (if (System/getProperty "babashka.version")
     atom
     (requiring-resolve 'freactive.core/atom)))
 
-(defonce log (ratom []))
-(defonce limit (ratom 100))
+(defonce ^:private config (ratom {:limit 100}))
 
-(defn- add-to-log [x]
-  (swap! log
-         #(->> (conj %1 %2)
-               (take-last @limit)
-               (vec))
-         x))
+(defonce log (ratom []))
+
+(defn- ->log
+  ([] [])
+  ([v] (vec (take-last (:limit @config) v)))
+  ([v x] (->log (conj v x))))
+
+(defn- tap-fn [x]
+  (swap! log ->log x))
 
 (defn clear []
-  (reset! log []))
+  (reset! log (->log)))
 
-(add-tap add-to-log)
+(defn limit [n]
+  (swap! config assoc :limit n)
+  (swap! log ->log)
+  nil)
+
+(add-tap tap-fn)

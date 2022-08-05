@@ -24,6 +24,6 @@ Require `rads.tap` to enable `rads.tap/log`:
 ; Values are ordered by timestamp in ascending order
 (take-last 5 @rads.tap/log) ; => (995 996 997 998 999)
 
-; Use the limit atom to change the size of the buffer
-(reset! rads.tap/limit 1000)
+; Use the rads.tap/limit to change the size of the buffer
+(rads.tap/limit 1000)
 ```
