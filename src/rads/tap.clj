@@ -1,8 +1,12 @@
-(ns rads.tap
-  (:require [freactive.core :as r]))
+(ns rads.tap)
 
-(defonce log (r/atom []))
-(defonce limit (r/atom 100))
+(def ratom
+  (if (System/getenv "babashka.version")
+    atom
+    (requiring-resolve 'freactive.core/atom)))
+
+(defonce log (ratom []))
+(defonce limit (ratom 100))
 
 (defn- add-to-log [x]
   (swap! log
