@@ -3,7 +3,7 @@
             [org.corfield.build :as bb]))
 
 (def lib 'io.github.rads/tap)
-(def version "0.2.0-alpha1")
+(def version "0.2.0")
 
 (defn ci
   "Run the CI pipeline of tests (and build the JAR)." [opts]
